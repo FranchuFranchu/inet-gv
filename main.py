@@ -11,10 +11,9 @@ class Node:
     auxiliaries: list[OutWire] = field(default_factory = list)
     name: str = ""
     flip: int = None
-    reduced: bool = True
+    reduced: bool = False
     def create_wire_to_self(self, name):
         if self.principal.name == name:
-            print("Yay", self.principal.name, name)
             return OutWire(self, None, name)
         else:
             i = list(filter(lambda x: x[1].name == name, enumerate(self.auxiliaries)))
@@ -39,7 +38,6 @@ class Node:
             return other.reduce(inet)
         inet.remove(self)
         inet.remove(other)
-        print(algo)
         if algo[0] == "era":
             if algo[1] in ("con", "dup"):
                 e1 = Node("era", other.auxiliaries[0])
@@ -61,13 +59,8 @@ class Node:
             c1 = Node("con", dp1, [WireRef("tmp12"), WireRef("tmp22")])
             c2 = Node("con", dp2, [WireRef("tmp11"), WireRef("tmp21")])
             
-            print("--------")
             connect_named_wires(d1, c1, "tmp12")
-            d1.pretty()
-            c2.pretty()
             connect_named_wires(d1, c2, "tmp11")
-            d1.pretty()
-            c2.pretty()
             connect_named_wires(d2, c1, "tmp22")
             connect_named_wires(d2, c2, "tmp21")
             
@@ -182,7 +175,6 @@ def parse(s) -> list[Node]:
 def reduce_one(inet):
     for i in inet.copy():
         if i.is_in_active_pair():
-            i.reduced = True
             i.reduce(inet)
             break
 
@@ -199,7 +191,7 @@ def validate_edge(edge):
 def create_graph_file(content):
     
     HEADER = '''digraph inet {
-    graph [margin=20]
+    graph [margin=30]
     node [penwidth=3,fontsize=30]
     edge [penwidth=3]
     
@@ -216,7 +208,8 @@ def create_graphs(inets):
     f = ""
     for idx, inet in enumerate(inets):
         if idx != 0:
-            f += f"dummy_{idx-1}:s -> dummy_{idx}:s [constraint=false,ltail=cluster_step{idx-1},lhead=cluster_step{idx}];\n"
+            #f += f"dummy_{idx-1}:s -> dummy_{idx}:s [constraint=false,ltail=cluster_step{idx-1},lhead=cluster_step{idx}];\n"
+            pass
         f += f"subgraph cluster_step{idx} {{\n"
         f += f"dummy_{idx} [shape=point,style=invis];\n"
         f += create_graph(inet, f'sg{idx}')
@@ -250,7 +243,6 @@ def create_graph(inet, prefix):
             return
         added_nodes.add(id(node))
         principal_node = node.principal.destination
-        print(node.name, principal_node.name, principal_node.principal.destination.name)
         
         if node.flip is None:
             node.flip = 1
@@ -258,7 +250,6 @@ def create_graph(inet, prefix):
             if node.principal.port is None:
                 # this means that they're face-to-face
                 principal_node.flip = node.flip * -1
-                print("Q", principal_node.name)
             else:
                 principal_node.flip = node.flip
         
@@ -274,17 +265,19 @@ def create_graph(inet, prefix):
                 
                 f += f'\t "{node.name}":{edge.opposite().to_direction(node.flip)}'
                 f += f'-> "{other.name}":{edge.to_direction(other.flip)}'
-                if edge.opposite().destination.reduced or edge.destination.reduced:
-                    f += " [color=red]"
+                
                 if edge.port is None and edge.opposite().port is None:
-                    f += " [color=blue]"
-                if edge.port is not None and edge.opposite().port is not None:
+                    # Active port
+                    if edge.opposite().destination.reduced and edge.destination.reduced:
+                        f += " [color=red]"
+                    else:
+                        f += " [color=blue]"
+                else:
                     f += " [color=black]"
                 f += " [arrowhead=none]"
                 f += ';\n'
             
             recursive_add_node(other)
-        print(node.flip)
         f += f'\t"{node.name}" {formats[node.type]} [orientation={180 if node.flip == 1 else 0}];\n'
     for node in inet:
         recursive_add_node(node)
@@ -315,9 +308,16 @@ if __name__ == '__main__':
     
     l = []
     for i in range(7):
-        reduce_one(a)
+        for i in a:
+            if i.is_in_active_pair():
+                i.reduced = True
+                i.principal.destination.reduced = True
+                break
+            else:
+                i.reduced = False
         l.append(deepcopy(a))
+        reduce_one(a)
     a = create_graph_file(create_graphs(l))
         
-        
     open("inet.gv", "w").write(a)
+    print("Successfully converted inet. Output is in inet.gv.")

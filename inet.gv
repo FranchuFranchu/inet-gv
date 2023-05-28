@@ -1,5 +1,5 @@
 digraph inet {
-    graph [margin=20]
+    graph [margin=30]
     node [penwidth=3,fontsize=30]
     edge [penwidth=3]
     
@@ -7,120 +7,111 @@ digraph inet {
     compound=true;
     subgraph cluster_step0 {
 dummy_0 [shape=point,style=invis];
-	 "sg0n0":s-> "sg0n4":n [color=red] [arrowhead=none];
-	 "sg0n4":sw-> "sg0n2":nw [color=blue] [arrowhead=none];
-	 "sg0n2":s-> "sg0n5":n [color=red] [arrowhead=none];
-	 "sg0n5":sw-> "sg0n2":ne [color=blue] [arrowhead=none];
-	 "sg0n5":se-> "sg0n3":ne [color=blue] [arrowhead=none];
-	 "sg0n3":s-> "sg0n1":n [color=red] [arrowhead=none];
-	"sg0n1" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
-	 "sg0n3":nw-> "sg0n4":se [color=blue] [arrowhead=none];
-	"sg0n3" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=180];
-	"sg0n5" [label="γ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=filled,fontcolor=white] [orientation=0];
-	"sg0n2" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=180];
-	"sg0n4" [label="γ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=filled,fontcolor=white] [orientation=0];
-	"sg0n0" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=180];
+	 "sg0n0":s-> "sg0n1":n [color=red] [arrowhead=none];
+	 "sg0n1":sw-> "sg0n0":nw [color=black] [arrowhead=none];
+	 "sg0n1":se-> "sg0n3":n [color=black] [arrowhead=none];
+	"sg0n3" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
+	"sg0n1" [label="γ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=filled,fontcolor=white] [orientation=0];
+	 "sg0n0":ne-> "sg0n2":n [color=black] [arrowhead=none];
+	"sg0n2" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
+	"sg0n0" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=180];
 }
-dummy_0:s -> dummy_1:s [constraint=false,ltail=cluster_step0,lhead=cluster_step1];
 subgraph cluster_step1 {
 dummy_1 [shape=point,style=invis];
-	 "sg1n0":s-> "sg1n2":n [color=red] [arrowhead=none];
-	 "sg1n2":sw-> "sg1n3":nw [color=blue] [arrowhead=none];
-	 "sg1n3":s-> "sg1n1":n [color=red] [arrowhead=none];
-	 "sg1n1":sw-> "sg1n3":ne [color=blue] [arrowhead=none];
-	 "sg1n1":se-> "sg1n4":n [arrowhead=none];
-	"sg1n4" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
-	"sg1n1" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=0];
-	"sg1n3" [label="γ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=filled,fontcolor=white] [orientation=180];
-	 "sg1n2":se-> "sg1n5":n [arrowhead=none];
-	"sg1n5" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
-	"sg1n2" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=0];
+	 "sg1n0":s-> "sg1n4":n [color=red] [arrowhead=none];
+	 "sg1n4":sw-> "sg1n2":nw [color=black] [arrowhead=none];
+	 "sg1n2":s-> "sg1n5":n [color=blue] [arrowhead=none];
+	 "sg1n5":sw-> "sg1n2":ne [color=black] [arrowhead=none];
+	 "sg1n5":se-> "sg1n3":ne [color=black] [arrowhead=none];
+	 "sg1n3":s-> "sg1n1":n [color=blue] [arrowhead=none];
+	"sg1n1" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
+	 "sg1n3":nw-> "sg1n4":se [color=black] [arrowhead=none];
+	"sg1n3" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=180];
+	"sg1n5" [label="γ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=filled,fontcolor=white] [orientation=0];
+	"sg1n2" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=180];
+	"sg1n4" [label="γ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=filled,fontcolor=white] [orientation=0];
 	"sg1n0" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=180];
 }
-dummy_1:s -> dummy_2:s [constraint=false,ltail=cluster_step1,lhead=cluster_step2];
 subgraph cluster_step2 {
 dummy_2 [shape=point,style=invis];
-	 "sg2n0":s-> "sg2n1":n [color=red] [arrowhead=none];
-	 "sg2n1":sw-> "sg2n0":ne [color=blue] [arrowhead=none];
-	 "sg2n1":se-> "sg2n4":n [arrowhead=none];
+	 "sg2n0":s-> "sg2n2":n [color=red] [arrowhead=none];
+	 "sg2n2":sw-> "sg2n3":nw [color=black] [arrowhead=none];
+	 "sg2n3":s-> "sg2n1":n [color=blue] [arrowhead=none];
+	 "sg2n1":sw-> "sg2n3":ne [color=black] [arrowhead=none];
+	 "sg2n1":se-> "sg2n4":n [color=black] [arrowhead=none];
 	"sg2n4" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
-	"sg2n1" [label="γ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=filled,fontcolor=white] [orientation=0];
-	 "sg2n0":nw-> "sg2n2":n [arrowhead=none];
-	"sg2n2" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
-	"sg2n0" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=180];
-	 "sg2n3":s-> "sg2n5":n [color=red] [arrowhead=none];
+	"sg2n1" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=0];
+	"sg2n3" [label="γ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=filled,fontcolor=white] [orientation=180];
+	 "sg2n2":se-> "sg2n5":n [color=black] [arrowhead=none];
 	"sg2n5" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
-	"sg2n3" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=180];
+	"sg2n2" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=0];
+	"sg2n0" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=180];
 }
-dummy_2:s -> dummy_3:s [constraint=false,ltail=cluster_step2,lhead=cluster_step3];
 subgraph cluster_step3 {
 dummy_3 [shape=point,style=invis];
-	 "sg3n0":s-> "sg3n7":n [color=red] [arrowhead=none];
-	 "sg3n7":sw-> "sg3n4":ne [color=blue] [arrowhead=none];
-	 "sg3n4":s-> "sg3n6":n [color=red] [arrowhead=none];
-	 "sg3n6":sw-> "sg3n4":nw [color=blue] [arrowhead=none];
-	 "sg3n6":se-> "sg3n5":nw [color=blue] [arrowhead=none];
-	 "sg3n5":s-> "sg3n2":n [color=red] [arrowhead=none];
+	 "sg3n0":s-> "sg3n1":n [color=red] [arrowhead=none];
+	 "sg3n1":sw-> "sg3n0":ne [color=black] [arrowhead=none];
+	 "sg3n1":se-> "sg3n4":n [color=black] [arrowhead=none];
+	"sg3n4" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
+	"sg3n1" [label="γ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=filled,fontcolor=white] [orientation=0];
+	 "sg3n0":nw-> "sg3n2":n [color=black] [arrowhead=none];
 	"sg3n2" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
-	 "sg3n5":ne-> "sg3n7":se [color=blue] [arrowhead=none];
-	"sg3n5" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=180];
-	"sg3n6" [label="γ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=filled,fontcolor=white] [orientation=0];
-	"sg3n4" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=180];
-	"sg3n7" [label="γ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=filled,fontcolor=white] [orientation=0];
-	"sg3n0" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=180];
-	 "sg3n1":s-> "sg3n3":n [color=red] [arrowhead=none];
-	"sg3n3" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
-	"sg3n1" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=180];
+	"sg3n0" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=180];
+	 "sg3n3":s-> "sg3n5":n [color=blue] [arrowhead=none];
+	"sg3n5" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
+	"sg3n3" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=180];
 }
-dummy_3:s -> dummy_4:s [constraint=false,ltail=cluster_step3,lhead=cluster_step4];
 subgraph cluster_step4 {
 dummy_4 [shape=point,style=invis];
-	 "sg4n0":s-> "sg4n2":n [color=red] [arrowhead=none];
+	 "sg4n0":s-> "sg4n7":n [color=red] [arrowhead=none];
+	 "sg4n7":sw-> "sg4n4":ne [color=black] [arrowhead=none];
+	 "sg4n4":s-> "sg4n6":n [color=blue] [arrowhead=none];
+	 "sg4n6":sw-> "sg4n4":nw [color=black] [arrowhead=none];
+	 "sg4n6":se-> "sg4n5":nw [color=black] [arrowhead=none];
+	 "sg4n5":s-> "sg4n2":n [color=blue] [arrowhead=none];
 	"sg4n2" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
+	 "sg4n5":ne-> "sg4n7":se [color=black] [arrowhead=none];
+	"sg4n5" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=180];
+	"sg4n6" [label="γ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=filled,fontcolor=white] [orientation=0];
+	"sg4n4" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=180];
+	"sg4n7" [label="γ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=filled,fontcolor=white] [orientation=0];
 	"sg4n0" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=180];
-	 "sg4n1":s-> "sg4n4":n [color=red] [arrowhead=none];
-	 "sg4n4":sw-> "sg4n7":n [arrowhead=none];
-	"sg4n7" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
-	 "sg4n4":se-> "sg4n5":nw [color=blue] [arrowhead=none];
-	 "sg4n5":s-> "sg4n3":n [color=red] [arrowhead=none];
-	 "sg4n3":sw-> "sg4n6":n [arrowhead=none];
-	"sg4n6" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
-	 "sg4n3":se-> "sg4n5":ne [color=blue] [arrowhead=none];
-	"sg4n3" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=0];
-	"sg4n5" [label="γ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=filled,fontcolor=white] [orientation=180];
-	"sg4n4" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=0];
+	 "sg4n1":s-> "sg4n3":n [color=blue] [arrowhead=none];
+	"sg4n3" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
 	"sg4n1" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=180];
 }
-dummy_4:s -> dummy_5:s [constraint=false,ltail=cluster_step4,lhead=cluster_step5];
 subgraph cluster_step5 {
 dummy_5 [shape=point,style=invis];
 	 "sg5n0":s-> "sg5n2":n [color=red] [arrowhead=none];
-	 "sg5n2":sw-> "sg5n5":n [arrowhead=none];
-	"sg5n5" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
-	 "sg5n2":se-> "sg5n3":nw [color=blue] [arrowhead=none];
-	 "sg5n3":s-> "sg5n1":n [color=red] [arrowhead=none];
-	 "sg5n1":sw-> "sg5n4":n [arrowhead=none];
-	"sg5n4" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
-	 "sg5n1":se-> "sg5n3":ne [color=blue] [arrowhead=none];
-	"sg5n1" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=0];
-	"sg5n3" [label="γ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=filled,fontcolor=white] [orientation=180];
-	"sg5n2" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=0];
+	"sg5n2" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
 	"sg5n0" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=180];
+	 "sg5n1":s-> "sg5n4":n [color=blue] [arrowhead=none];
+	 "sg5n4":sw-> "sg5n7":n [color=black] [arrowhead=none];
+	"sg5n7" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
+	 "sg5n4":se-> "sg5n5":nw [color=black] [arrowhead=none];
+	 "sg5n5":s-> "sg5n3":n [color=blue] [arrowhead=none];
+	 "sg5n3":sw-> "sg5n6":n [color=black] [arrowhead=none];
+	"sg5n6" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
+	 "sg5n3":se-> "sg5n5":ne [color=black] [arrowhead=none];
+	"sg5n3" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=0];
+	"sg5n5" [label="γ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=filled,fontcolor=white] [orientation=180];
+	"sg5n4" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=0];
+	"sg5n1" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=180];
 }
-dummy_5:s -> dummy_6:s [constraint=false,ltail=cluster_step5,lhead=cluster_step6];
 subgraph cluster_step6 {
 dummy_6 [shape=point,style=invis];
-	 "sg6n0":s-> "sg6n1":n [color=red] [arrowhead=none];
-	 "sg6n1":sw-> "sg6n0":nw [color=blue] [arrowhead=none];
-	 "sg6n1":se-> "sg6n5":n [arrowhead=none];
+	 "sg6n0":s-> "sg6n2":n [color=red] [arrowhead=none];
+	 "sg6n2":sw-> "sg6n5":n [color=black] [arrowhead=none];
 	"sg6n5" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
-	"sg6n1" [label="γ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=filled,fontcolor=white] [orientation=0];
-	 "sg6n0":ne-> "sg6n2":n [arrowhead=none];
-	"sg6n2" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
-	"sg6n0" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=180];
-	 "sg6n3":s-> "sg6n4":n [color=red] [arrowhead=none];
+	 "sg6n2":se-> "sg6n3":nw [color=black] [arrowhead=none];
+	 "sg6n3":s-> "sg6n1":n [color=blue] [arrowhead=none];
+	 "sg6n1":sw-> "sg6n4":n [color=black] [arrowhead=none];
 	"sg6n4" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=0];
-	"sg6n3" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=180];
+	 "sg6n1":se-> "sg6n3":ne [color=black] [arrowhead=none];
+	"sg6n1" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=0];
+	"sg6n3" [label="γ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=filled,fontcolor=white] [orientation=180];
+	"sg6n2" [label="δ", margin=0,shape=triangle,fixedsize=true,width=1,fillcolor=black,height=1,style=stroke,fontcolor=black] [orientation=0];
+	"sg6n0" [label="ε", shape=circle, width=0.2,fixedsize=true,height=0.5,fontcolor=black] [orientation=180];
 }
 
     }
