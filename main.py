@@ -11,6 +11,7 @@ class Node:
     auxiliaries: list[OutWire] = field(default_factory = list)
     name: str = ""
     flip: int = None
+    reduced: bool = True
     def create_wire_to_self(self, name):
         if self.principal.name == name:
             print("Yay", self.principal.name, name)
@@ -181,6 +182,7 @@ def parse(s) -> list[Node]:
 def reduce_one(inet):
     for i in inet.copy():
         if i.is_in_active_pair():
+            i.reduced = True
             i.reduce(inet)
             break
 
@@ -272,10 +274,12 @@ def create_graph(inet, prefix):
                 
                 f += f'\t "{node.name}":{edge.opposite().to_direction(node.flip)}'
                 f += f'-> "{other.name}":{edge.to_direction(other.flip)}'
-                if edge.port is None and edge.opposite().port is None:
+                if edge.opposite().destination.reduced or edge.destination.reduced:
                     f += " [color=red]"
-                if edge.port is not None and edge.opposite().port is not None:
+                if edge.port is None and edge.opposite().port is None:
                     f += " [color=blue]"
+                if edge.port is not None and edge.opposite().port is not None:
+                    f += " [color=black]"
                 f += " [arrowhead=none]"
                 f += ';\n'
             
